@@ -1,0 +1,85 @@
+/*Comentario CSS*/
+//Comentario en SASS
+
+//Primer superpoder de SASS
+//Nesting(Anidamiento)
+
+//Segundo superpoder de SASS
+//Variables
+
+@import "utilities/variables";
+@import "layout/contacto";
+
+header{
+    background-color: red;
+    width: $ancho-principal;
+    box-shadow: 1px black;
+    .titulo-principal{
+        color: black;
+        font-size: 20px;
+    }
+    nav{
+        ul{
+            background-color: $color-principal;
+            display: flex;
+            justify-content: center;
+            li{
+                background-color: yellow;
+                &:hover{ //Usar & (ampersand) para llamar pseudoclases
+                    background-color: red;
+                }
+            }
+        }
+    }
+}
+
+/* mixin*/
+@mixin titulosH1 {
+    margin-top: 100px;
+    margin-bottom: 70px;
+    text-align: center;
+    font-family: Aldrich;
+    }
+
+h1{
+    @include titulosH1;
+}
+
+/*Map*/
+$banco-colores:(
+    color-navbar: orangered,
+    color-cursos: blanchedalmond,
+    color-footer: rgb(24, 181, 209)
+);
+
+footer{
+    padding: 20px;
+    bottom: 0;
+    font-family: orbitron;
+    text-align: center;
+    background-color: map-get($map: $banco-colores , $key:color-footer); //map-get, llamo el map de banco-colores con el value color-footer
+    width: 100%;
+    position: static;
+  }
+
+  /*Extend*/
+  %animacionh2{
+    animation-name: agrandar;
+    animation-iteration-count: infinite;
+    animation-duration: 2s;
+  }
+
+  @keyframes agrandar{
+    0%, 100% {
+        transform: scale(1,1);
+    }
+    50% {
+        transform: scale(1.05,1.05);
+    }
+}
+
+  .h2Index{
+    color: black;
+    margin-top: 50px;
+    @extend %animacionh2;
+  }
